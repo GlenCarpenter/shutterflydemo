@@ -1,21 +1,15 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import { Fragment, useEffect, useState } from "react";
-import { Search, Table } from "../";
+// import { Search, Table } from "../";
 import axios from "axios";
 
 const App = () => {
-  const [data, setData] = useState([]);
-  const [states, setStates] = useState([""]);
-  const [genres, setGenres] = useState([""]);
-  const [attire, setAttire] = useState([""]);
-  // State for current paginated view
-  const [page, setPage] = useState(0);
-
+  const [data, setData] = useState("");
   useEffect(() => {
     // Initial load of data
     axios
-      .get("/api/data")
+      .get("/hello")
       .then(response => {
         setData(response.data);
       })
@@ -23,6 +17,7 @@ const App = () => {
         console.log(error);
       });
 
+    /*
     axios
       .get("/api/states")
       .then(response => {
@@ -55,21 +50,8 @@ const App = () => {
       .catch(error => {
         console.log(error);
       });
+      */
   }, []);
-
-  useEffect(() => {
-    // Go back to first page when data changes
-    setPage(0);
-  }, [data]);
-
-  const SearchProps = { states, genres, attire, data, setData };
-
-  const TableProps = {
-    data,
-    setData,
-    page,
-    setPage
-  };
 
   return (
     <Fragment>
@@ -79,10 +61,8 @@ const App = () => {
           text-align: center;
         `}
       >
-        Restaurant Guide
+        {data}
       </h1>
-      <Search {...SearchProps} />
-      <Table {...TableProps} />
     </Fragment>
   );
 };
