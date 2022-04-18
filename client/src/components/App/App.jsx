@@ -9,7 +9,7 @@ const App = () => {
   useEffect(() => {
     // Initial load of data
     axios
-      .get("/hello")
+      .get("/api/hello")
       .then(response => {
         setData(response.data);
       })
