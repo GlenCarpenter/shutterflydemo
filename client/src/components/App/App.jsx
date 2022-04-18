@@ -53,16 +53,15 @@ const App = () => {
       */
   }, []);
 
+  const centeredText = css`
+    width: 100%;
+    text-align: center;
+  `;
+
   return (
     <Fragment>
-      <h1
-        css={css`
-          width: 100%;
-          text-align: center;
-        `}
-      >
-        {data}
-      </h1>
+      <h1 css={centeredText}>React with Flask</h1>
+      <p css={centeredText}>{data}</p>
     </Fragment>
   );
 };
